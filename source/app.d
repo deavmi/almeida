@@ -31,5 +31,6 @@ void setupHandlers(URLRouter router)
 	router.get("/", &home);
 	router.get("/peerdb", &peerlist);
 	router.get("/peerinfo", &peerinfo);
+	router.get("/buildinfo", &buildinfo);
 	
 }

@@ -1,0 +1,19 @@
+html
+	title Almeida
+	body
+		h1 Almeida
+		h3
+			i Welcome to Almeida
+		hr
+
+		h1= name
+		h3 &#x1f511 Key: #{ key }
+
+		h3 Name: #{ name }
+		h3 Architecture: #{ arch }
+		h3 Platform: #{ platform }
+		h3 Router version: #{ _version }
+
+		hr
+		a(href="/peerinfo?key=#{key}") Lookup in PeerDB
+		hr

@@ -7,7 +7,7 @@ html
 		hr
 
 		h1= name
-		h3 Key: #{ key }
+		h3 &#x1f511 Key: #{ key }
 		h3 Address: #{ ip }
 		h3 Group: #{ group }
 		h3 Country: #{ country }
@@ -19,3 +19,7 @@ html
 		div
 			h4 Raw data
 			code=nodeInfoJSON
+
+		hr
+		a(href="/buildinfo?key=#{key}") Lookup in BuildDB
+		hr

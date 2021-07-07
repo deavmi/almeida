@@ -73,3 +73,31 @@ void peerinfo(HTTPServerRequest request, HTTPServerResponse response)
 	/* Render the template */
 	response.render!("peerinfo.dt", key, ip, name, group, operator, country, nodeInfoJSON);
 }
+
+void buildinfo(HTTPServerRequest request, HTTPServerResponse response)
+{
+	/* Fetch the key */
+	/* TODO: Validate the key */
+	string key = request.query["key"];
+
+	Address testNode = parseAddress("201:6c56:f9d5:b7a5:8f42:b1ab:9e0e:5169", 9090);
+	YggdrasilPeer yggPeer = new YggdrasilPeer(testNode);
+
+	/* Fetch the node */
+	YggdrasilNode yggNode = yggPeer.fetchNode(key);
+
+	/* Fetch the NodeInfo */
+	NodeInfo nodeInfo = yggNode.getNodeInfo();
+	JSONValue nodeinfo = nodeInfo.getFullJSON();
+
+	string name = nodeinfo["buildname"].str();
+	string platform = nodeinfo["buildplatform"].str();
+	string arch = nodeinfo["buildarch"].str();
+	string _version = nodeinfo["buildversion"].str();
+	
+	//response.writeBody(to!(string)(request));
+	
+	
+	/* Render the template */
+	response.render!("buildinfo.dt", key, name, platform, arch, _version);
+}
