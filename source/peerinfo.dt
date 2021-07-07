@@ -1,0 +1,21 @@
+html
+	title Almeida
+	body
+		h1 Almeida
+		h3
+			i Welcome to Almeida
+		hr
+
+		h1= name
+		h3 Key: #{ key }
+		h3 Address: #{ ip }
+		h3 Group: #{ group }
+		h3 Country: #{ country }
+
+		div
+			h3 Operator status
+			code=operator
+
+		div
+			h4 Raw data
+			code=nodeInfoJSON

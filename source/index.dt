@@ -1,0 +1,12 @@
+html
+	title Almeida
+	body
+		h1 Almeida
+		h3
+			i Welcome to Almeida
+		hr
+		- ulong i = 2;
+		-
+		-
+		-
+		p= i

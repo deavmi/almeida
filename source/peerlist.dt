@@ -1,0 +1,15 @@
+html
+	title Almeida
+	body
+		h1 Almeida
+		h3
+			i Welcome to Almeida
+		hr
+		span
+			p Number of peers:
+			b
+				p= peers.length
+		- foreach(string peer; peers)
+			a(href="/peerinfo?key=#{peer}")= peer
+		-
+		-
