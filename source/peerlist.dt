@@ -4,11 +4,11 @@ html
 
 	body
 		include navbar.dt
-		
-		h1 Almeida
-		h3
-			i Welcome to Almeida
-		hr
+
+		center
+			h1 PeerDB
+			h4 All known nodes
+			hr
 		span
 			p Number of peers:
 			b

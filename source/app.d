@@ -1,6 +1,12 @@
+module app;
+
 import std.stdio;
 import vibe.vibe;
 import handlers;
+import collector;
+import std.socket;
+
+public Collector d;
 
 void main()
 {
@@ -21,6 +27,10 @@ void main()
 
 	/* Bind the settings and the router toghether */
 	listenHTTP(serverSettings, router);
+
+	/* Setup data collection */
+	Address yggdrasilControlNode = parseAddress("201:6c56:f9d5:b7a5:8f42:b1ab:9e0e:5169", 9090);
+	setupDataCollector(yggdrasilControlNode);
 	
 	/* Start the webs erver loop */
 	runApplication();
@@ -36,4 +46,10 @@ void setupHandlers(URLRouter router)
 	router.get("/salazar", &buildinfo);
 	router.get("/about", &about);
 	
+}
+
+void setupDataCollector(Address nodeAddress)
+{
+	d = new Collector(nodeAddress);
+	d.start();
 }

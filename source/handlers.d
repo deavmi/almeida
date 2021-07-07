@@ -1,5 +1,6 @@
 module handlers;
 
+import app;
 import vibe.vibe;
 import libyggdrasil;
 import std.net.curl;
@@ -16,21 +17,7 @@ void home(HTTPServerRequest request, HTTPServerResponse response)
 
 private string[] getKeys()
 {
-	string url = "http://[21e:e795:8e82:a9e2:ff48:952d:55f2:f0bb]/static/current";
-	string[] keys;
-	
-	import std.net.curl;
-	string k = cast(string)get(url);
-
-	//writeln(k);
-
-	JSONValue json = parseJSON(k);
-	json = json["yggnodes"];
-
-	keys = json.object().keys;
-//	writeln(keys);
-
-	return keys;
+	return d.getKeys();
 }
 
 void peerlist(HTTPServerRequest request, HTTPServerResponse response)
