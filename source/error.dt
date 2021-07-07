@@ -1,19 +1,16 @@
 html
 	title Almeida
 	link(href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css", rel="stylesheet", integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC", crossorigin="anonymous")
-
-
+	
 	body
 		include navbar.dt
+		
+		center
+			h1 Porra! #{ error.code }
+			h4 Nigga what the fuck were you doing
+			h5
+				i English muthafucker, do you speak it?
 
-		h1 Almeida
-		h3
-			i Welcome to Almeida
-		hr
-		- ulong i = 2;
-		-
-		-
-		-
-		p= i
-
-		button(type="button", class="btn btn-primary") Poes
+			code
+				- import std.conv;
+				pre=to!(string)(error)

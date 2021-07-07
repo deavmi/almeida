@@ -37,9 +37,31 @@ void peerlist(HTTPServerRequest request, HTTPServerResponse response)
 {
 	/* Fetch the peers list from Arceliar's node */
 	string[] peers = getKeys();
+	string[] names;
+
+
+	ulong offset = to!(ulong)(request.query["offset"]);
+	peers = peers[offset..offset+10];
+
+
+	/* Fetch node names */
+	Address testNode = parseAddress("201:6c56:f9d5:b7a5:8f42:b1ab:9e0e:5169", 9090);
+	YggdrasilPeer yggPeer = new YggdrasilPeer(testNode);
+	foreach(string peer; peers)
+	{
+		/* Fetch the node */
+		YggdrasilNode yggNode = yggPeer.fetchNode(peer);
+
+		/* Fetch the NodeInfo */
+		NodeInfo nodeInfo = yggNode.getNodeInfo();
+
+		/* Get the name */
+		string name = nodeInfo.getName();
+		names~=name;
+	}
 	
 	/* Render the template */
-	response.render!("peerlist.dt", peers);
+	response.render!("peerlist.dt", peers, names);
 }
 
 void peerinfo(HTTPServerRequest request, HTTPServerResponse response)
@@ -101,3 +123,16 @@ void buildinfo(HTTPServerRequest request, HTTPServerResponse response)
 	/* Render the template */
 	response.render!("buildinfo.dt", key, name, platform, arch, _version);
 }
+
+void about(HTTPServerRequest request, HTTPServerResponse response)
+{
+	/* Render the template */
+	response.render!("about.dt");
+}
+
+void error(HTTPServerRequest request, HTTPServerResponse response, HTTPServerErrorInfo error)
+{
+	/* Render the template */
+	response.render!("error.dt", error);
+}
+
