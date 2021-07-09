@@ -12,3 +12,7 @@ body {
 .badge, .btn {
 	margin: 10px 10px;
 }
+
+div.card > span > a {
+	text-decoration: none;
+}

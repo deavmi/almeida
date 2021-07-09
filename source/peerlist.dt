@@ -69,11 +69,11 @@ html
 
 					br
 					span
-						button(type="btn", class="btn btn-primary")
-							a(href="/peerinfo?key=#{peer}") Peer info
+						a(href="/peerinfo?key=#{peer}")
+							button(type="btn", class="btn btn-primary") Peer info
 
-						button(type="btn", class="btn btn-secondary")
-							a(href="/buildinfo?key=#{peer}") Build info
+						a(href="/buildinfo?key=#{peer}")
+							button(type="btn", class="btn btn-secondary") Build info
 							
 
 				br
