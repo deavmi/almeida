@@ -22,7 +22,7 @@ html
 
 				button(v-on:click="refresh", class="btn btn-outline-success") Refresh
 
-			script(src="raw/kaka.js")
+			script(src="/raw/kaka.js")
 
 
 		
