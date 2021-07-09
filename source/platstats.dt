@@ -1,0 +1,14 @@
+- string[] plats = collector.getPlatforms();
+	h5 Platforms
+	- foreach(string plat; plats)
+		- ulong platCount = collector.getPlatformCount(plat);
+		- string style = "primary";
+			- import std.string;
+			- if(cmp(plat, "failed") == 0)
+				- style = "danger";
+			- else if(cmp(plat, "unknown") == 0)
+				- style = "warning";
+		div(class="card text-white bg-#{style} mb-3", style="max-width: 18rem;")
+			div(class="card-header")= plat
+				div(class="card-body")
+					h5(class="card-title")= platCount

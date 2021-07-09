@@ -5,16 +5,36 @@ html
 	body
 		include navbar.dt
 		
-		h1 Almeida
-		h3
-			i Welcome to Almeida
+		center
+			h1= name
+			h3 &#x1f511 Key: #{ key }
+
 		hr
 
-		h1= name
-		h3 &#x1f511 Key: #{ key }
-		h3 Address: #{ ip }
-		h3 Group: #{ group }
-		h3 Country: #{ country }
+		- import std.string;
+		- string alertType = "primary";
+		- string alertMessage = "This node is fine";
+		- if(cmp(name, "<no name>") == 0)
+			- alertType="warning";
+			- alertMessage="This node is lacking standardized nodeinfo";
+
+		div(class="alert alert-#{alertType}", role="alert")
+			p #{ alertMessage }
+
+		br
+
+
+
+		div(class="card")
+			div(class="card-header")
+				h4 #{ name }
+			ul(class="list-group, list-group-flush")
+				li(class="list-group-item") &#x1f511 Address: #{ ip }
+				li(class="list-group-item") &#x1f511 Family: #{ group }
+				li(class="list-group-item") 🌐️ Country: #{ country }
+				li(class="list-group-item") 💻️ #{ country }
+
+		
 
 		div
 			h3 Operator status

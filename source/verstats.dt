@@ -1,0 +1,14 @@
+- string[] vers = collector.getVersions();
+	h5 Versions
+	- foreach(string ver; vers)
+		- ulong verCount = collector.getVersionCount(ver);
+		- string style = "primary";
+			- import std.string;
+			- if(cmp(ver, "failed") == 0)
+				- style = "danger";
+			- else if(cmp(ver, "unknown") == 0)
+				- style = "warning";
+		div(class="card text-white bg-#{style} mb-3", style="max-width: 18rem;")
+			div(class="card-header")= ver
+				div(class="card-body")
+					h5(class="card-title")= verCount

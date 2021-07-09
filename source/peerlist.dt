@@ -9,30 +9,88 @@ html
 			h1 PeerDB
 			h4 All known nodes
 			hr
-		span
-			p Number of peers:
-			b
-				p= peers.length
 
-		
-		- for(ulong i = 0; i < peers.length; i++)
-			- string peer = peers[i];
-			- string name = names[i];
-			div(class="card")
-				div(class="card-header")
-					h4 #{ name }
-				ul(class="list-group, list-group-flush")
-					li(class="list-group-item") &#x1f511 #{ peer }
+			- string[] keys = collector.getKeys();
+			- ulong globalPeerCount = keys.length;
+			- ulong pages = globalPeerCount/10;
+			- import std.stdio;
+
+			- ulong start = offset;
+			- ulong end = start +10;
+			- 
+			- if(start >= globalPeerCount)
+				-while(start > 0)
+					- start--;
+			- if(end > globalPeerCount)
+				- end=globalPeerCount;
+			- keys = keys[start..end];
+
+
+			- ulong currentPage = offset % 10;
+			span
+				h5 I have #{ globalPeerCount } keys in my database
+
+		br
+		br
+
+		- if(end != 0)
+			- for(ulong i = 0; i < keys.length; i++)
+				- string peer = keys[i];
+				- import std.conv;
+				- import libyggdrasil;
+				- YggdrasilNode node = yggPeer.fetchNode(peer);
+				- NodeInfo nodeInfo = collector.getNodeInfo(node.getKey());
+				- string nodeStatusStyle = "success";
+				- string nodeStatus = "online";
+				
+				- string name = "N/A";
+				- string routerVersion = "N/A";
+				- string routerArch = "N/A";
+				- if(nodeInfo)
+					- name = nodeInfo.getName();
+					- routerVersion = nodeInfo.getFullJSON()["buildversion"].str();
+					- routerArch = nodeInfo.getFullJSON()["buildarch"].str();;
+				- else
+					- nodeStatusStyle = "danger";
+					- nodeStatus = "offline";
+
+				div(class="card")
+					div(class="card-header")
+						h4 #{ name }
+					ul(class="list-group, list-group-flush")
+						li(class="list-group-item") &#x1f511 #{ peer }
+						li(class="list-group-item") 🌐️ #{ routerVersion }
+						li(class="list-group-item") 💻️ #{ routerArch }
+
+					br
+
+					span(class="badge bg-#{nodeStatusStyle}")= nodeStatus
+
+					br
+					span
+						a(href="/peerinfo?key=#{peer}")
+							button(type="btn", class="btn btn-primary") Peer info
+
+						a(href="/buildinfo?key=#{peer}")
+							button(type="btn", class="btn btn-secondary") Build info
+							
 
 				br
-				span
-					a(href="/peerinfo?key=#{peer}")
-						button(type="btn", class="btn btn-primary") Peer info
 
-					a(href="/buildinfo?key=#{peer}")
-						button(type="btn", class="btn btn-secondary") Build info
-						
-
-			br
-			
+			center
+				nav(aria-label="Poes")
+					ul(class="pagination")
+						li(class="page-item")
+							a(class="page-link", href="/peerdb?offset=#{offset-10}") Previous
+						li(class="page-item")
+							a(class="page-link", href="/peerdb?offset=#{offset}") #{currentPage}
+						li(class="page-item")
+							a(class="page-link", href="/peerdb?offset=#{offset+10}") #{currentPage+1}
+						li(class="page-item")
+							a(class="page-link", href="/peerdb?offset=#{offset+20}") #{currentPage+2}
+						li(class="page-item")
+							a(class="page-link", href="/peerdb?offset=#{offset+10}") Next
+					
+		- else
+			h1 Poes	
 			

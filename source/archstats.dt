@@ -1,0 +1,14 @@
+- string[] archs = collector.getArchs();
+	h5 Architectures
+	- foreach(string arch; archs)
+		- ulong archCount = collector.getArchCount(arch);
+		- string style = "primary";
+		- import std.string;
+		- if(cmp(arch, "failed") == 0)
+			- style = "danger";
+		- else if(cmp(arch, "unknown") == 0)
+			- style = "warning";
+		div(class="card text-white bg-#{style} mb-3", style="max-width: 18rem;")
+			div(class="card-header")= arch
+				div(class="card-body")
+					h5(class="card-title")= archCount

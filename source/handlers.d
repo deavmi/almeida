@@ -7,6 +7,8 @@ import std.net.curl;
 import std.json;
 import std.stdio;
 import std.socket;
+import std.string;
+import collector;
 
 void home(HTTPServerRequest request, HTTPServerResponse response)
 {
@@ -23,32 +25,18 @@ private string[] getKeys()
 void peerlist(HTTPServerRequest request, HTTPServerResponse response)
 {
 	/* Fetch the peers list from Arceliar's node */
-	string[] peers = getKeys();
-	string[] names;
-
+	string[] peers = d.getKeys();
 
 	ulong offset = to!(ulong)(request.query["offset"]);
 	peers = peers[offset..offset+10];
 
-
 	/* Fetch node names */
 	Address testNode = parseAddress("201:6c56:f9d5:b7a5:8f42:b1ab:9e0e:5169", 9090);
 	YggdrasilPeer yggPeer = new YggdrasilPeer(testNode);
-	foreach(string peer; peers)
-	{
-		/* Fetch the node */
-		YggdrasilNode yggNode = yggPeer.fetchNode(peer);
-
-		/* Fetch the NodeInfo */
-		NodeInfo nodeInfo = yggNode.getNodeInfo();
-
-		/* Get the name */
-		string name = nodeInfo.getName();
-		names~=name;
-	}
 	
 	/* Render the template */
-	response.render!("peerlist.dt", peers, names);
+	Collector collector = d;
+	response.render!("peerlist.dt", peers, collector, yggPeer, offset);
 }
 
 void peerinfo(HTTPServerRequest request, HTTPServerResponse response)
@@ -78,9 +66,10 @@ void peerinfo(HTTPServerRequest request, HTTPServerResponse response)
 	writeln(request);
 	//response.writeBody(to!(string)(request));
 	
+	Collector collector = d;
 	
 	/* Render the template */
-	response.render!("peerinfo.dt", key, ip, name, group, operator, country, nodeInfoJSON);
+	response.render!("peerinfo.dt", key, ip, name, group, operator, country, nodeInfoJSON, collector);
 }
 
 void buildinfo(HTTPServerRequest request, HTTPServerResponse response)
@@ -109,6 +98,13 @@ void buildinfo(HTTPServerRequest request, HTTPServerResponse response)
 	
 	/* Render the template */
 	response.render!("buildinfo.dt", key, name, platform, arch, _version);
+}
+
+void builddb(HTTPServerRequest request, HTTPServerResponse response)
+{
+	/* Render the template */
+	Collector collector = d;
+	response.render!("builddb.dt", collector);
 }
 
 void about(HTTPServerRequest request, HTTPServerResponse response)

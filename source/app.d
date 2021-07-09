@@ -23,6 +23,7 @@ void main()
 	
 	/* TODO Make configurable from command-line */
 	serverSettings.port = 9091;
+	serverSettings.bindAddresses = ["::"];
 	serverSettings.errorPageHandler = toDelegate(&error);
 
 	/* Bind the settings and the router toghether */
@@ -43,6 +44,7 @@ void setupHandlers(URLRouter router)
 	router.get("/peerdb", &peerlist);
 	router.get("/peerinfo", &peerinfo);
 	router.get("/buildinfo", &buildinfo);
+	router.get("/builddb", &builddb);
 	router.get("/salazar", &buildinfo);
 	router.get("/about", &about);
 	
