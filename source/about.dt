@@ -19,8 +19,10 @@ html
 			
 			br
 
-			p "Version #{ _version }"
-			p "Source code #{ sourceCodeLink }"
+			span
+				p Version 
+				p= _version
+			a(href="#{sourceCodeLink}") Source code
 			p Donate XMR: 
 				code= moneroAddress
 
