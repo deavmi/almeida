@@ -24,27 +24,39 @@ html
 
 		br
 
+		script(src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js")
 
+		div(id="render")
+			div(class="card")
+				div(class="card-header")
+					h4 #{ name }
+					h4
+						:htmlescape
+							{{name}}
+				ul(class="list-group, list-group-flush")
+					li(class="list-group-item") &#x1f511 Address: #{ ip }
+					li(class="list-group-item") &#x1f511 Family: #{ group }
+					li(class="list-group-item") 🌐️ Country: #{ country }
+					li(class="list-group-item") 💻️ #{ country }
 
-		div(class="card")
-			div(class="card-header")
-				h4 #{ name }
-			ul(class="list-group, list-group-flush")
-				li(class="list-group-item") &#x1f511 Address: #{ ip }
-				li(class="list-group-item") &#x1f511 Family: #{ group }
-				li(class="list-group-item") 🌐️ Country: #{ country }
-				li(class="list-group-item") 💻️ #{ country }
+			
 
-		
+			div
+				h3 Operator status
+				pre=operator
 
-		div
-			h3 Operator status
-			pre=operator
+			div
+				h4 Raw data
+				code
+					pre=nodeInfoJSON
 
-		div
-			h4 Raw data
-			code
-				pre=nodeInfoJSON
+		script
+			| var key = "#{key}"
+
+		script(src="/raw/peerinfo.js")
+
+		:htmlescape
+			<!--  -->
 
 		hr
 		a(href="/buildinfo?key=#{key}") Lookup in BuildDB
