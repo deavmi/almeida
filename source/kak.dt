@@ -1,31 +1,6 @@
-div(class="col")
-	h4 Architectures			
-	div(class="row", v-for="arch in archs", class="card text-white bg-primary mb-3", style="max-width: 18rem;")
-		:htmlescape
-			{{ arch.name }}
-		div(class="card-body")
-			h5(class="card-title")
-			:htmlescape
-				{{ arch.count }}
 
 
-div(class="col")
-	h4 Platforms			
-	div(class="row", v-for="platform in platforms", class="card text-white bg-primary mb-3", style="max-width: 18rem;")
-		:htmlescape
-			{{ platform.name }}
-		div(class="card-body")
-			h5(class="card-title")
-			:htmlescape
-				{{ platform.count }}
 
 
-div(class="col")
-	h4 Versions
-	div(class="row", v-for="version in versions", class="card text-white bg-primary mb-3", style="max-width: 18rem;")
-		:htmlescape
-			{{ version.name }}
-		div(class="card-body")
-			h5(class="card-title")
-			:htmlescape
-				{{ version.count }}
+
+

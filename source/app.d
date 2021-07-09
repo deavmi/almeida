@@ -6,6 +6,9 @@ import handlers;
 import collector;
 import std.socket;
 
+string _version = "v0.0.1";
+string sourceCodeLink = "http://github.com/deavmi/almeida";
+string moneroAddress = "86reDCjk99VJ8QCo73WwM1AtfweD2fp8RPPWzNK56cdS1fAfxWCwixic9QrXkHyoJSe3gMZkAkb8aW5oU4cLEFucMLX4wqP";
 public Collector d;
 
 void main()

@@ -1,14 +1,9 @@
-- string[] vers = collector.getVersions();
-	h5 Versions
-	- foreach(string ver; vers)
-		- ulong verCount = collector.getVersionCount(ver);
-		- string style = "primary";
-			- import std.string;
-			- if(cmp(ver, "failed") == 0)
-				- style = "danger";
-			- else if(cmp(ver, "unknown") == 0)
-				- style = "warning";
-		div(class="card text-white bg-#{style} mb-3", style="max-width: 18rem;")
-			div(class="card-header")= ver
-				div(class="card-body")
-					h5(class="card-title")= verCount
+div(class="col")
+	h4 Versions
+	div(class="row", v-for="version in versions", class="card text-white bg-primary mb-3", style="max-width: 18rem;")
+		:htmlescape
+			{{ version.name }}
+		div(class="card-body")
+			h5(class="card-title")
+			:htmlescape
+				{{ version.count }}

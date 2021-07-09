@@ -14,7 +14,9 @@ html
 			div(id="render")
 				div(class="container")
 					div(class="row")
-						include kak.dt
+						include archstats.dt
+						include platstats.dt
+						include verstats.dt
 
 
 				button(v-on:click="refresh", class="btn btn-outline-success") Refresh
