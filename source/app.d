@@ -51,6 +51,7 @@ void setupHandlers(URLRouter router)
 	router.get("/salazar", &buildinfo);
 	router.get("/about", &about);
 	router.get("/raw/kaka.js", serveStaticFile("source/kaka.js"));
+	router.get("/raw/peerinfo.js", serveStaticFile("source/peerinfo.js"));
 	router.get("/raw/global.css", serveStaticFile("source/global.css"));
 	router.get("/api/", &apiHandler);
 	router.get("/api/builddb", &getbuilddb);
