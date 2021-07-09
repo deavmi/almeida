@@ -61,8 +61,6 @@ html
 
 		script(src="/raw/peerinfo.js")
 
-		:htmlescape
-			<!--  -->
 
 		hr
 		a(href="/buildinfo?key=#{key}") Lookup in BuildDB
