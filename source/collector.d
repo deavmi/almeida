@@ -53,7 +53,7 @@ public final class Collector : Thread
 
 			writeln("Cycle done");
 			
-			sleep(dur!("seconds")(60));
+			sleep(dur!("seconds")(500));
 		}
 	}
 
@@ -162,10 +162,14 @@ public final class Collector : Thread
 		return count;
 	}
 
-	
 
 	private void refreshBuildDB()
 	{
+		/* Reset stats */
+		archs = null;
+		platforms = null;
+		versions = null;
+		
 		/* Get all the keys */
 		string[] keys = getKeys();
 

@@ -47,7 +47,9 @@ void setupHandlers(URLRouter router)
 	router.get("/builddb", &builddb);
 	router.get("/salazar", &buildinfo);
 	router.get("/about", &about);
-	
+	router.get("/raw/kaka.js", serveStaticFile("source/kaka.js"));
+	router.get("/api/", &apiHandler);
+	router.get("/api/builddb", &getbuilddb);
 }
 
 void setupDataCollector(Address nodeAddress)

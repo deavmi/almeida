@@ -119,3 +119,75 @@ void error(HTTPServerRequest request, HTTPServerResponse response, HTTPServerErr
 	response.render!("error.dt", error);
 }
 
+
+/**
+* API Handler
+*
+* This handles all requests in `/api/*`
+*/
+void apiHandler(HTTPServerRequest request, HTTPServerResponse response)
+{
+	JSONValue resp;
+
+	/* Path */
+	writeln(request.path);
+
+
+	resp["name"] = d.getPlatforms();
+	response.writeBody(resp.toString());
+}
+
+/**
+* API Handlers below
+*/
+
+void getbuilddb(HTTPServerRequest request, HTTPServerResponse response)
+{
+	/* JSON response */
+	JSONValue responseJSON;
+
+
+	/* Get all the platforms */
+	JSONValue[] platformBlocks;
+	string[] platforms = d.getPlatforms();
+	foreach(string platform; platforms)
+	{
+		JSONValue platformBlock;
+		platformBlock["name"] = platform;
+		platformBlock["count"] = d.getPlatformCount(platform);
+
+		platformBlocks ~= platformBlock;
+	}
+	responseJSON["platforms"] = platformBlocks;
+
+	/* Get all the architectures */
+	JSONValue[] archBlocks;
+	string[] archs = d.getArchs();
+	foreach(string arch; archs)
+	{
+		JSONValue archBlock;
+		archBlock["name"] = arch;
+		archBlock["count"] = d.getArchCount(arch);
+
+		archBlocks ~= archBlock;
+	}
+	responseJSON["archs"] = archBlocks;
+
+	/* Get all the versions */
+	JSONValue[] versionBlocks;
+	string[] versions = d.getVersions();
+	foreach(string _version; versions)
+	{
+		JSONValue versionBlock;
+		versionBlock["name"] = _version;
+		versionBlock["count"] = d.getVersionCount(_version);
+
+		versionBlocks ~= versionBlock;
+	}
+	responseJSON["versions"] = versionBlocks;
+
+
+
+	/* Write back response */
+	response.writeBody(responseJSON.toString());
+}

@@ -4,21 +4,22 @@ html
 
 	body
 		include navbar.dt
+		script(src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js")
 
 		center
 			h1 BuildDB
 			h4 Popularity contest
 			hr
 
-			div(class="container")
-				div(class="row")
-					div(class="col")
-						include archstats.dt
-					div(class="col")
-						include platstats.dt
-					div(class="col")
-						include verstats.dt
+			div(id="render")
+				div(class="container")
+					div(class="row")
+						include kak.dt
 
+
+				button(v-on:click="refresh", class="btn btn-outline-success") Refresh
+
+			script(src="/raw/kaka.js")
 
 
 		
