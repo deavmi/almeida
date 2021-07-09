@@ -1,0 +1,10 @@
+body {
+	max-width: 98%;
+	margin: 0 auto;
+}
+
+.alert {
+	line-height: auto;
+	max-width: 50%;
+	margin: 0 auto;
+}
