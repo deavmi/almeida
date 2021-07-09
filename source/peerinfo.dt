@@ -20,7 +20,7 @@ html
 			- alertMessage="This node is lacking standardized nodeinfo";
 
 		div(class="alert alert-#{alertType}", role="alert")
-			p #{ alertMessage }
+			span #{ alertMessage }
 
 		br
 
