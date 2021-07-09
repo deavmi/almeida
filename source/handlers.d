@@ -141,6 +141,21 @@ void apiHandler(HTTPServerRequest request, HTTPServerResponse response)
 * API Handlers below
 */
 
+/**
+* Handler for `/api/builddb`
+*
+* This returns buid information in the format:
+*
+* platforms: [
+				{ name: ' ', count: 0},
+			],
+			archs: [
+				{ name: ' ', count: 0},
+			],
+			versions: [
+				{ name: ' ', count: 0},
+			],
+*/
 void getbuilddb(HTTPServerRequest request, HTTPServerResponse response)
 {
 	/* JSON response */
