@@ -54,7 +54,9 @@ void setupHandlers(URLRouter router)
 	router.get("/raw/peerinfo.js", serveStaticFile("source/peerinfo.js"));
 	router.get("/raw/global.css", serveStaticFile("source/global.css"));
 	router.get("/api/", &apiHandler);
+	
 	router.get("/api/builddb", &getbuilddb);
+	router.get("/api/peerinfo", &getpeerinfo);
 }
 
 void setupDataCollector(Address nodeAddress)

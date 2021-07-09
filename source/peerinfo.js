@@ -9,52 +9,22 @@ var app = new Vue(
 		},
 		methods: {
 			refresh: async function(event) {
-				resp = await fetch("http://[201:6c56:f9d5:b7a5:8f42:b1ab:9e0e:5169]:9091/api/nodeinfo?key="+key)
-				resp = await resp.json();
-				this.data = resp;
+				updateData();
 			}
 		}
 	}
-	)
-
-
-/**
-* Architecture component (archName)
-*
-* Given archName it will fetch its count
-*/
-Vue.component('archBlock', {
-	props: ['archName'],
-	data: function () {
-		return {
-			archCount: 0
-		}
-	},
-	methods: {
-		update: async function(event) {
-            updateData();
-		}
-	},
-	template: '<button v-on:click="update">{{archCount}}</bruh>'
-  		
-})
-
-
-async function apiTest()
-{
-	resp = await fetch("http://[201:6c56:f9d5:b7a5:8f42:b1ab:9e0e:5169]:9091/api/")
-	resp = await resp.json();
-	return resp.name;
-}
+)
 
 async function updateData()
 {
-	resp = await fetch("http://[201:6c56:f9d5:b7a5:8f42:b1ab:9e0e:5169]:9091/api/")
-						resp = await resp.json();
-						this.archCount = resp["name"]+this.archCount;
-			
+	resp = await fetch("http://[201:6c56:f9d5:b7a5:8f42:b1ab:9e0e:5169]:9091/api/peerinfo?key="+key)
+	resp = await resp.json();
+    console.log(resp.name);
+	app.address = resp.address;
+    app.domain = resp.domain;
+    app.location = resp.location;
+    app.name = resp.name;
 }
 
-	// Delay the execution of this function in the event loop
-	setInterval(updateData, 500);
-	
+// Add this to the event loop with a 500millisecond re-run interval
+setInterval(updateData, 500);

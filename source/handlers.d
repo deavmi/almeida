@@ -209,7 +209,42 @@ void getbuilddb(HTTPServerRequest request, HTTPServerResponse response)
 	responseJSON["versions"] = versionBlocks;
 
 
+	/* Write back response */
+	response.writeBody(responseJSON.toString());
+}
 
+void getpeerinfo(HTTPServerRequest request, HTTPServerResponse response)
+{
+	/* JSON response */
+	JSONValue responseJSON;
+
+	/* Fetch the key */
+	/* TODO: Validate the key */
+	string key = request.query["key"];
+	writeln("Hello!"~key);
+
+	/* Fetch the NodeInfo */
+	NodeInfo nodeInfo = d.getNodeInfo(key);
+
+	string ip, name, group, country, operator, nodeInfoJSON;
+
+	if(nodeInfo)
+	{
+		/* TODO: Fix up yggdraisl library for this */
+		ip = nodeInfo.getAddress();
+		name = nodeInfo.getName();
+		group = nodeInfo.getGroupName();
+		country = nodeInfo.getCountry();
+		operator = nodeInfo.getOperatorBlock().toPrettyString();
+
+		nodeInfoJSON = nodeInfo.getFullJSON().toPrettyString();
+		
+		writeln(request);
+
+		responseJSON = nodeInfo.getFullJSON();
+	}
+
+	
 	/* Write back response */
 	response.writeBody(responseJSON.toString());
 }

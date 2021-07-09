@@ -29,18 +29,24 @@ html
 		div(id="render")
 			div(class="card")
 				div(class="card-header")
-					h4 #{ name }
 					h4
 						:htmlescape
 							{{name}}
 				ul(class="list-group, list-group-flush")
-					li(class="list-group-item") &#x1f511 Address: #{ ip }
-					li(class="list-group-item") &#x1f511 Family: #{ group }
-					li(class="list-group-item") 🌐️ Country: #{ country }
-					li(class="list-group-item") 💻️ #{ country }
 
-			
-
+					li(class="list-group-item")
+						:htmlescape
+							🔑️ Address: {{ address }}
+					li(class="list-group-item")
+						:htmlescape
+							🏠️ Family: {{ domain }}
+					li(class="list-group-item")
+						:htmlescape
+							🌐️ Country: {{ location }}
+					li(class="list-group-item")
+						:htmlescape
+							💻️ Name: {{ name }}		
+					
 			div
 				h3 Operator status
 				pre=operator
