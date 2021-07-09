@@ -19,7 +19,8 @@ html
 			
 			br
 
-			p Version v0.0.1
-			p Source code
-			p Donate
+			p "Version #{ _version }"
+			p "Source code # {sourceCodeLink }"
+			p Donate XMR: 
+				code= moneroAddress
 

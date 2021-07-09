@@ -110,7 +110,7 @@ void builddb(HTTPServerRequest request, HTTPServerResponse response)
 void about(HTTPServerRequest request, HTTPServerResponse response)
 {
 	/* Render the template */
-	response.render!("about.dt");
+	response.render!("about.dt", app.sourceCodeLink, app.moneroAddress, app._version);
 }
 
 void error(HTTPServerRequest request, HTTPServerResponse response, HTTPServerErrorInfo error)
