@@ -73,12 +73,12 @@ async function apiTest()
 async function fetchCyle()
 {
 	app.nodename = "d"
-				resp = await fetch("http://[201:6c56:f9d5:b7a5:8f42:b1ab:9e0e:5169]:9091/api/")
+				resp = await fetch("/api/")
 				resp = await resp.json();
 				app.nodename = resp["name"];
 				app.nodes = app.nodename;
 
-				resp = await fetch("http://[201:6c56:f9d5:b7a5:8f42:b1ab:9e0e:5169]:9091/api/builddb")
+				resp = await fetch("/api/builddb")
 				resp = await resp.json();
 				app.platforms = resp.platforms;
 				app.archs = resp.archs;

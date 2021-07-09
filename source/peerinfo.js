@@ -17,7 +17,7 @@ var app = new Vue(
 
 async function updateData()
 {
-	resp = await fetch("http://[201:6c56:f9d5:b7a5:8f42:b1ab:9e0e:5169]:9091/api/peerinfo?key="+key)
+	resp = await fetch("/api/peerinfo?key="+key)
     if(resp != null)
     {
         resp = await resp.json();
