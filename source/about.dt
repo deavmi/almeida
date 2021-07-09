@@ -20,7 +20,7 @@ html
 			br
 
 			p "Version #{ _version }"
-			p "Source code # {sourceCodeLink }"
+			p "Source code #{ sourceCodeLink }"
 			p Donate XMR: 
 				code= moneroAddress
 
