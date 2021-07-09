@@ -8,3 +8,7 @@ body {
 	max-width: 50%;
 	margin: 0 auto;
 }
+
+.badge, .btn {
+	margin: 10px 10px;
+}
