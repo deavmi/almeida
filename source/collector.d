@@ -124,9 +124,15 @@ public final class Collector : Thread
 
 	public ulong getPlatformCount(string key)
 	{
+		ulong count = 0;
+
 		popularityContestLock.lock();
-		ulong count = platforms[key];
+		if(key in platforms)
+		{
+			count = platforms[key];
+		}
 		popularityContestLock.unlock();
+		
 		return count;
 	}
 
@@ -140,9 +146,15 @@ public final class Collector : Thread
 
 	public ulong getArchCount(string key)
 	{
+		ulong count = 0;
+
 		popularityContestLock.lock();
-		ulong count = archs[key];
+		if(key in archs)
+		{
+			count = archs[key];
+		}
 		popularityContestLock.unlock();
+		
 		return count;
 	}
 
@@ -156,11 +168,19 @@ public final class Collector : Thread
 
 	public ulong getVersionCount(string key)
 	{
+		ulong count = 0;
+
 		popularityContestLock.lock();
-		ulong count = versions[key];
+		if(key in versions)
+		{
+			count = versions[key];
+		}
 		popularityContestLock.unlock();
+
 		return count;
 	}
+
+
 
 
 	private void refreshBuildDB()
