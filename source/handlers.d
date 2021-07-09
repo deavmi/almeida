@@ -53,17 +53,24 @@ void peerinfo(HTTPServerRequest request, HTTPServerResponse response)
 
 	/* Fetch the NodeInfo */
 	NodeInfo nodeInfo = yggNode.getNodeInfo();
-	
-	/* TODO: Fix up yggdraisl library for this */
-	string ip = nodeInfo.getAddress();
-	string name = nodeInfo.getName();
-	string group = nodeInfo.getGroupName();
-	string country = nodeInfo.getCountry();
-	string operator = nodeInfo.getOperatorBlock().toPrettyString();
 
-	string nodeInfoJSON = nodeInfo.getFullJSON().toPrettyString();
+	string ip, name, group, country, operator, nodeInfoJSON;
+
+	if(nodeInfo)
+	{
+		/* TODO: Fix up yggdraisl library for this */
+		ip = nodeInfo.getAddress();
+		name = nodeInfo.getName();
+		group = nodeInfo.getGroupName();
+		country = nodeInfo.getCountry();
+		operator = nodeInfo.getOperatorBlock().toPrettyString();
+
+		nodeInfoJSON = nodeInfo.getFullJSON().toPrettyString();
+		
+		writeln(request);
+	}
 	
-	writeln(request);
+	
 	//response.writeBody(to!(string)(request));
 	
 	Collector collector = d;
