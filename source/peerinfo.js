@@ -20,6 +20,12 @@ var app = new Vue(
 async function updateData()
 {
 	resp = await fetch("/api/peerinfo?key="+key)
+
+    if ("location" in resp)
+    {
+        console.log("naaia");
+    }
+
     if(resp != null)
     {
         resp = await resp.json();
@@ -28,7 +34,7 @@ async function updateData()
         app.domain = resp.domain;
         app.location = resp.location;
         app.name = resp.name;
-        app.nodeinfo = resp.nodeinfo;
+        app.nodeinfo = resp;
         app.contact = resp.contact;
 
         /* TODO: Set last updated bubble */
@@ -36,6 +42,12 @@ async function updateData()
     else
     {
         /* TODO: Set a bubble here */
+        app.address = "Failed to fetch";
+        app.domain = "Failed to fetch";
+        app.location = "Failed to fetch";
+        app.name = "Failed to fetch";
+        app.nodeinfo = "Failed to fetch";
+        app.contact = "Failed to fetch";
     }
 	
 }
