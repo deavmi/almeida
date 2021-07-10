@@ -252,6 +252,7 @@ void getpeerinfo(HTTPServerRequest request, HTTPServerResponse response)
 			nodeInfoBlock["location"] = nodeInfo.getLocation();
 			nodeInfoBlock["contact"] = nodeInfo.getContact();
 			nodeInfoBlock["nodeinfo"] = nodeInfo.getFullJSON();
+			responseJSON["response"] = nodeInfoBlock;
 
 			responseJSON["status"] = "ok";
 		}
