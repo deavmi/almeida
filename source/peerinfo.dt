@@ -45,16 +45,14 @@ html
 							🌐️ Country: {{ location }}
 					li(class="list-group-item")
 						:htmlescape
-							💻️ Name: {{ name }}		
-					
-			div
-				h3 Operator status
-				pre=operator
+							💻️ Contact: {{ contact }}		
 
 			div
 				h4 Raw data
 				code
-					pre=nodeInfoJSON
+					pre
+						:htmlescape
+							{{ nodeinfo }}
 
 		script
 			| var key = "#{key}"
