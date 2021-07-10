@@ -29,6 +29,7 @@ async function updateData()
         app.location = resp.location;
         app.name = resp.name;
         app.nodeinfo = resp.nodeinfo;
+        app.contact = resp.contact;
 
         /* TODO: Set last updated bubble */
     }
