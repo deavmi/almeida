@@ -6,6 +6,8 @@ var app = new Vue(
             domain: "<domain>",
             location: "<location>",
             name: "<name>",
+            contact: "<contact>",
+            nodeinfo: {},
 		},
 		methods: {
 			refresh: async function(event) {
@@ -26,6 +28,7 @@ async function updateData()
         app.domain = resp.domain;
         app.location = resp.location;
         app.name = resp.name;
+        app.nodeinfo = resp.nodeinfo;
 
         /* TODO: Set last updated bubble */
     }
