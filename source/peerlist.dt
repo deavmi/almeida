@@ -66,7 +66,7 @@ html
 						- writeln("poes");
 					- else
 						- nodeStatusStyle = "warning";
-						- nodeStatus = "illformed";
+						- nodeStatus = "illformed "~to!(string)((nodeInfo.wellFormed+1))~"/4";
 				- catch(YggdrasilException e)
 					- writeln(e);
 					- nodeStatusStyle = "danger";

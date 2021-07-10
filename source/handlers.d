@@ -231,16 +231,23 @@ void getpeerinfo(HTTPServerRequest request, HTTPServerResponse response)
 
 	if(nodeInfo)
 	{
+		/* Set the response */
+		JSONValue nodeInfoBlock;
+		nodeInfoBlock["name"] = nodeInfo.getName();
+		nodeInfoBlock["domain"] = nodeInfo.getGroup();
+		nodeInfoBlock["location"] = nodeInfo.getLocation();
+		nodeInfoBlock["contact"] = nodeInfo.getContact();
+		nodeInfoBlock["nodeinfo"] = nodeInfo.getFullJSON();
+		responseJSON["response"] = nodeInfoBlock;
+		
+		
+
 		if(nodeInfo.isWellFormed())
 		{
-			/* Set the response */
-			JSONValue nodeInfoBlock;
-			nodeInfoBlock["name"] = nodeInfo.getName();
-			nodeInfoBlock["domain"] = nodeInfo.getGroup();
-			nodeInfoBlock["location"] = nodeInfo.getLocation();
-			nodeInfoBlock["contact"] = nodeInfo.getContact();
-			nodeInfoBlock["nodeinfo"] = nodeInfo.getFullJSON();
-			responseJSON["response"] = nodeInfoBlock;
+			
+			
+			
+			
 
 			responseJSON["status"] = "ok";
 		}

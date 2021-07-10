@@ -45,6 +45,7 @@ async function updateData()
             app.contact = resp.response.contact;
 
             /* TODO: Set bubble here */
+            console.log("WOOOPP!!");
         }
         /* If malformed */
         else
@@ -52,7 +53,7 @@ async function updateData()
             /* TODO: Set bubble here */
         }
         
-    
+        console.log("WOOOPP!!");
     
 
         /* TODO: Set last updated bubble */
