@@ -28,14 +28,32 @@ async function updateData()
 
     if(resp != null)
     {
+        /* Get the JSON */
         resp = await resp.json();
-        console.log(resp.name);
-        app.address = resp.address;
-        app.domain = resp.domain;
-        app.location = resp.location;
-        app.name = resp.name;
-        app.nodeinfo = resp;
-        app.contact = resp.contact;
+
+        /* Get status */
+        var status = resp.status;
+
+        /* If wellformed */
+        if(status == "ok")
+        {
+            app.address = resp.address;
+            app.domain = resp.domain;
+            app.location = resp.location;
+            app.name = resp.name;
+            app.nodeinfo = resp.nodeinfo;
+            app.contact = resp.contact;
+
+            /* TODO: Set bubble here */
+        }
+        /* If malformed */
+        else
+        {
+            /* TODO: Set bubble here */
+        }
+        
+    
+    
 
         /* TODO: Set last updated bubble */
     }
