@@ -17,12 +17,7 @@ var app = new Vue(
 
 async function updateData()
 {
-	resp = await fetch("/api/buildinfo?key="+key)
-
-    if ("location" in resp)
-    {
-        console.log("naaia");
-    }
+	resp = await fetch("/api/peerinfo?key="+key)
 
     if(resp != null)
     {

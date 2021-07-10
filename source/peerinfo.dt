@@ -12,6 +12,9 @@ html
 
 		hr
 
+
+		
+
 		- import std.string;
 		- string alertType = "primary";
 		- string alertMessage = "This node is fine";
@@ -19,7 +22,7 @@ html
 			- alertType="warning";
 			- alertMessage="This node is lacking standardized nodeinfo";
 
-		div(class="alert alert-#{alertType}", role="alert")
+		div(id="wellformedness-alert", class="alert alert-#{alertType}", role="alert")
 			span #{ alertMessage }
 
 		br
