@@ -35,8 +35,7 @@ async function updateData()
         var status = resp.status;
 
         /* If wellformed */
-        if(status == "ok")
-        {
+        
             app.address = resp.response.address;
             app.domain = resp.response.domain;
             app.location = resp.response.location;
@@ -46,12 +45,7 @@ async function updateData()
 
             /* TODO: Set bubble here */
             console.log("WOOOPP!!");
-        }
-        /* If malformed */
-        else
-        {
-            /* TODO: Set bubble here */
-        }
+        
         
         console.log("WOOOPP!!");
     
