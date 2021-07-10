@@ -221,7 +221,6 @@ void getpeerinfo(HTTPServerRequest request, HTTPServerResponse response)
 	/* Fetch the key */
 	/* TODO: Validate the key */
 	string key = request.query["key"];
-	writeln("Hello!"~key);
 
 	/* Fetch the NodeInfo */
 	NodeInfo nodeInfo = d.getNodeInfo(key);
@@ -246,5 +245,32 @@ void getpeerinfo(HTTPServerRequest request, HTTPServerResponse response)
 
 	
 	/* Write back response */
+	response.writeBody(responseJSON.toString());
+}
+
+/**
+* Checks if a node is online
+*
+* /api/pingnode?key=<key>
+*/
+void pingnode(HTTPServerRequest request, HTTPServerResponse response)
+{
+	/* JSON response */
+	JSONValue responseJSON;
+
+	/* Fetch the key */
+	/* TODO: Validate the key */
+	string key = request.query["key"];
+
+	Address testNode = parseAddress("201:6c56:f9d5:b7a5:8f42:b1ab:9e0e:5169", 9090);
+	YggdrasilPeer yggPeer = new YggdrasilPeer(testNode);
+
+	/* Fetch the node */
+	YggdrasilNode yggNode = yggPeer.fetchNode(key);
+
+	/* Ping the node */
+	responseJSON["online"] = yggNode.ping();
+
+	/* Write the response */
 	response.writeBody(responseJSON.toString());
 }
