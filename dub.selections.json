@@ -7,7 +7,7 @@
 		"eventcore": "0.9.17",
 		"libasync": "0.8.6",
 		"libchonky": "0.0.4",
-		"libyggdrasil": "0.0.15",
+		"libyggdrasil": "0.0.17",
 		"memutils": "1.0.4",
 		"mir-linux-kernel": "1.0.1",
 		"openssl": "1.1.6+1.0.1g",

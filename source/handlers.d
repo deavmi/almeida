@@ -61,9 +61,9 @@ void peerinfo(HTTPServerRequest request, HTTPServerResponse response)
 		/* TODO: Fix up yggdraisl library for this */
 		ip = "nodeInfo.getAddress();";
 		name = nodeInfo.getName();
-		group = nodeInfo.getGroupName();
-		country = nodeInfo.getCountry();
-		operator = nodeInfo.getOperatorBlock().toPrettyString();
+		group = nodeInfo.getGroup();
+		country = nodeInfo.getLocation();
+		operator = nodeInfo.getContact();
 
 		nodeInfoJSON = nodeInfo.getFullJSON().toPrettyString();
 		
