@@ -218,6 +218,8 @@ void getpeerinfo(HTTPServerRequest request, HTTPServerResponse response)
 	/* JSON response */
 	JSONValue responseJSON;
 
+	
+
 	/* Fetch the key */
 	/* TODO: Validate the key */
 	string key = request.query["key"];
@@ -225,25 +227,44 @@ void getpeerinfo(HTTPServerRequest request, HTTPServerResponse response)
 	/* Fetch the NodeInfo */
 	NodeInfo nodeInfo = d.getNodeInfo(key);
 
-	string ip, name, group, country, operator, nodeInfoJSON;
 
 	if(nodeInfo)
 	{
 		/* TODO: Fix up yggdraisl library for this */
-		ip = nodeInfo.getAddress();
+		ip = "nodeInfo.getAddress();";
 		name = nodeInfo.getName();
 		group = nodeInfo.getGroupName();
 		country = nodeInfo.getCountry();
-		operator = nodeInfo.getOperatorBlock().toPrettyString();
+		contact = nodeInfo.getContact();
 
 		nodeInfoJSON = nodeInfo.getFullJSON().toPrettyString();
 		
 		writeln(request);
 
 		responseJSON = nodeInfo.getFullJSON();
+
+		if(nodeInfo.isWellFormed())
+		{
+			/* Set the response */
+			JSONValue nodeInfoBlock;
+			nodeInfoBlock["name"] = nodeInfo.getName();
+			nodeInfoBlock["domain"] = nodeInfo.getGroup();
+			nodeInfoBlock["location"] = nodeInfo.getLocation();
+			nodeInfoBlock["contact"] = nodeInfo.getContact();
+			nodeInfoBlock["nodeinfo"] = nodeInfo.getFullJSON();
+
+			responseJSON["status"] = "ok";
+		}
+		else
+		{
+			responseJSON["status"] = "malformed";
+		}
+	}
+	else
+	{
+		responseJSON["status"] = "timeout";
 	}
 
-	
 	/* Write back response */
 	response.writeBody(responseJSON.toString());
 }
