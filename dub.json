@@ -4,6 +4,7 @@
 	],
 	"copyright": "Copyright © 2021, Tristan B. Kildaire",
 	"dependencies": {
+		"gogga": "~>0.1.3",
 		"libyggdrasil": "~>0.0.6",
 		"vibe-d": "~>0.9.3"
 	},

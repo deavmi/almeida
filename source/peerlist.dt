@@ -55,14 +55,15 @@ html
 				- try
 					- nodeInfo = collector.getNodeInfo(node.getKey());
 
-					- writeln("NodeInfo fetch");
+					- writeln("NodeInfo fetch: "~to!(string)(nodeInfo.isWellFormed()));
+					- writeln(nodeInfo.wellFormed);
+					- name = nodeInfo.getName();
+					- BuildInfo buildInfo = nodeInfo.getBuildInfo();
+					- if(buildInfo.isWellFormed())
+						- routerVersion = buildInfo.getVersion();
+						- routerArch =  buildInfo.getArchitecture();
 					- if(nodeInfo.isWellFormed())
-						- name = nodeInfo.getName();
-						- writeln("WELLLLL FORMED");
-						- BuildInfo buildInfo = nodeInfo.getBuildInfo();
-						- if(buildInfo.isWellFormed())
-							- routerVersion = buildInfo.getVersion();
-							- routerArch =  buildInfo.getArchitecture();
+						- writeln("poes");
 					- else
 						- nodeStatusStyle = "warning";
 						- nodeStatus = "illformed";
