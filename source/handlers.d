@@ -2,7 +2,7 @@ module handlers;
 
 import app;
 import vibe.vibe;
-import libyggdrasil;
+import libyggdrasil.libyggdrasil;
 import std.net.curl;
 import std.json;
 import std.stdio;

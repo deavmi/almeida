@@ -7,7 +7,7 @@ import std.net.curl;
 import std.json;
 import std.conv;
 import std.stdio;
-import libyggdrasil;
+import libyggdrasil.libyggdrasil;
 import std.string;
 
 
