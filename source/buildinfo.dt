@@ -1,23 +1,64 @@
 html
-	title Almeida
+	title Build info (#{ key }) | Almeida
 	link(href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css", rel="stylesheet", integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC", crossorigin="anonymous")
 	link(href="raw/global.css", rel="stylesheet")
 
 	body
 		include navbar.dt
 		
-		h1 Almeida
-		h3
-			i Welcome to Almeida
+		center
+			h1= name
+			h3 &#x1f511 Key: #{ key }
+
 		hr
 
-		h1 Build information
-		h3 &#x1f511 Key: #{ key }
+		- import std.string;
+		- string alertType = "primary";
+		- string alertMessage = "This node is fine";
+		- if(cmp(name, "<no name>") == 0)
+			- alertType="warning";
+			- alertMessage="This node is lacking standardized nodeinfo";
 
-		h3 Name: #{ name }
-		h3 Architecture: #{ arch }
-		h3 Platform: #{ platform }
-		h3 Router version: #{ _version }
+		div(class="alert alert-#{alertType}", role="alert")
+			span #{ alertMessage }
+
+		br
+
+		script(src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js")
+
+		div(id="render")
+			div(class="card")
+				div(class="card-header")
+					h4
+						:htmlescape
+							{{name}}
+				ul(class="list-group, list-group-flush")
+
+					li(class="list-group-item")
+						:htmlescape
+							💻️ Version: {{ version }}
+					li(class="list-group-item")
+						:htmlescape
+							💻️ Architecture: {{ architecture }}
+					li(class="list-group-item")
+						:htmlescape
+							💻️ Platform: {{ platform }}
+					li(class="list-group-item")
+						:htmlescape
+							💻️ Build: {{ build }}		
+
+			div
+				h4 Raw data
+				code
+					pre
+						:htmlescape
+							{{ nodeinfo }}
+
+		script
+			| var key = "#{key}"
+
+		script(src="/raw/peerinfo.js")
+
 
 		hr
 		a(href="/peerinfo?key=#{key}") Lookup in PeerDB
