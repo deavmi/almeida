@@ -37,12 +37,12 @@ async function updateData()
         /* If wellformed */
         if(status == "ok")
         {
-            app.address = resp.address;
-            app.domain = resp.domain;
-            app.location = resp.location;
-            app.name = resp.name;
-            app.nodeinfo = resp.nodeinfo;
-            app.contact = resp.contact;
+            app.address = resp.response.address;
+            app.domain = resp.response.domain;
+            app.location = resp.response.location;
+            app.name = resp.response.name;
+            app.nodeinfo = resp.response.nodeinfo;
+            app.contact = resp.response.contact;
 
             /* TODO: Set bubble here */
         }
