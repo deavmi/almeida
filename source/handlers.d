@@ -59,7 +59,7 @@ void peerinfo(HTTPServerRequest request, HTTPServerResponse response)
 	if(nodeInfo)
 	{
 		/* TODO: Fix up yggdraisl library for this */
-		ip = nodeInfo.getAddress();
+		ip = "nodeInfo.getAddress();"
 		name = nodeInfo.getName();
 		group = nodeInfo.getGroupName();
 		country = nodeInfo.getCountry();
