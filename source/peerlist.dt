@@ -11,10 +11,12 @@ html
 			h4 All known nodes
 			hr
 
+			- import std.stdio;
+			- writeln("ddd");
 			- string[] keys = collector.getKeys();
 			- ulong globalPeerCount = keys.length;
 			- ulong pages = globalPeerCount/10;
-			- import std.stdio;
+			
 
 			- ulong start = offset;
 			- ulong end = start +10;
@@ -39,21 +41,36 @@ html
 				- string peer = keys[i];
 				- import std.conv;
 				- import libyggdrasil.libyggdrasil;
-				- YggdrasilNode node = yggPeer.fetchNode(peer);
-				- NodeInfo nodeInfo = collector.getNodeInfo(node.getKey());
 				- string nodeStatusStyle = "success";
 				- string nodeStatus = "online";
-				
+
 				- string name = "N/A";
 				- string routerVersion = "N/A";
 				- string routerArch = "N/A";
-				- if(nodeInfo)
-					- name = nodeInfo.getName();
-					- routerVersion = nodeInfo.getFullJSON()["buildversion"].str();
-					- routerArch = nodeInfo.getFullJSON()["buildarch"].str();;
-				- else
+
+				- YggdrasilNode node = yggPeer.fetchNode(peer);
+				
+				
+				- NodeInfo nodeInfo;
+				- try
+					- nodeInfo = collector.getNodeInfo(node.getKey());
+
+					- writeln("NodeInfo fetch");
+					- if(nodeInfo.isWellFormed())
+						- name = nodeInfo.getName();
+						- BuildInfo buildInfo = nodeInfo.getBuildInfo();
+						- if(buildInfo.isWellFormed())
+							- routerVersion = buildInfo.getVersion();
+							- routerArch =  buildInfo.getArchitecture();
+					- else
+						- nodeStatusStyle = "warning";
+						- nodeStatus = "illformed";
+				- catch(YggdrasilException e)
+					- writeln(e);
 					- nodeStatusStyle = "danger";
 					- nodeStatus = "offline";
+		
+		
 
 				div(class="card")
 					div(class="card-header")
