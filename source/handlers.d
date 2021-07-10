@@ -230,19 +230,6 @@ void getpeerinfo(HTTPServerRequest request, HTTPServerResponse response)
 
 	if(nodeInfo)
 	{
-		/* TODO: Fix up yggdraisl library for this */
-		ip = "nodeInfo.getAddress();";
-		name = nodeInfo.getName();
-		group = nodeInfo.getGroupName();
-		country = nodeInfo.getCountry();
-		contact = nodeInfo.getContact();
-
-		nodeInfoJSON = nodeInfo.getFullJSON().toPrettyString();
-		
-		writeln(request);
-
-		responseJSON = nodeInfo.getFullJSON();
-
 		if(nodeInfo.isWellFormed())
 		{
 			/* Set the response */
