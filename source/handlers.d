@@ -208,6 +208,7 @@ void getbuilddb(HTTPServerRequest request, HTTPServerResponse response)
 	}
 	responseJSON["versions"] = versionBlocks;
 
+	writeln(responseJSON);
 
 	/* Write back response */
 	response.writeBody(responseJSON.toString());

@@ -28,6 +28,8 @@ var app = new Vue(
 				this.platforms = resp.platforms;
 				this.archs = resp.archs;
 				this.versions = resp.versions;
+
+				console.log("fddf");
 			
 			
 
@@ -83,6 +85,7 @@ async function fetchCyle()
 				app.platforms = resp.platforms;
 				app.archs = resp.archs;
 				app.versions = resp.versions;
+				console.log("kak");
 			
 }
 

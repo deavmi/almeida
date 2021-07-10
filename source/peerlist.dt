@@ -58,6 +58,7 @@ html
 					- writeln("NodeInfo fetch");
 					- if(nodeInfo.isWellFormed())
 						- name = nodeInfo.getName();
+						- writeln("WELLLLL FORMED");
 						- BuildInfo buildInfo = nodeInfo.getBuildInfo();
 						- if(buildInfo.isWellFormed())
 							- routerVersion = buildInfo.getVersion();
